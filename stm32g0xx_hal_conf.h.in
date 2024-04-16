@@ -15,6 +15,12 @@
 
 #include "distortos/chip/CMSIS-proxy.h"
 
+#ifdef USE_FULL_ASSERT
+
+#include <assert.h>
+
+#endif	// def USE_FULL_ASSERT
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -36,22 +42,19 @@ extern "C"
 
 #ifdef USE_FULL_ASSERT
 
-void assert_failed(uint8_t* file, uint32_t line);
-
 /**
- * \brief The assert_param() macro is used for function's parameters check.
- *
- * \param expr If expr is false, it calls assert_failed() function which reports the name of the source file and the
- * source line number of the call that failed. If expr is true, it returns no value.
- *
- * \ret None
+ * \brief The assert_param() macro is a wrapper around standard assert()
  */
 
-#define assert_param(expr) ((expr) ? (void)0 : assert_failed((uint8_t*)__FILE__, __LINE__))
+#define assert_param(expression)			assert(expression)
 
 #else
 
-#define assert_param(expr) ((void)0)
+/**
+ * \brief assert_param() macro for "asserts disabled" configuration which does not produce "unused variable" warning
+ */
+
+#define assert_param(expression)			(void)sizeof(expression)
 
 #endif	/* USE_FULL_ASSERT */
 
