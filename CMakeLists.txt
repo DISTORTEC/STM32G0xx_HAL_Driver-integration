@@ -81,6 +81,12 @@ if(STM32G0xx_HAL_Driver_USART)
 endif()
 
 distortosSetConfiguration(BOOLEAN
+		STM32G0xx_HAL_Driver_Full_LL_driver
+		OFF
+		HELP "Enable \"full\" LL driver."
+		OUTPUT_NAME USE_FULL_LL_DRIVER)
+
+distortosSetConfiguration(BOOLEAN
 		STM32G0xx_HAL_Driver_ADC
 		OFF
 		HELP "Enable STM32G0xx_HAL_Driver's ADC module."
