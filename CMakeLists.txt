@@ -284,6 +284,11 @@ target_include_directories(STM32G0xx_HAL_Driver PUBLIC
 target_link_libraries(STM32G0xx_HAL_Driver PUBLIC
 		distortos::distortos)
 
+if(STM32G0xx_HAL_Driver_Full_LL_driver)
+	target_compile_definitions(STM32G0xx_HAL_Driver PRIVATE
+			USE_FULL_LL_DRIVER)
+endif()
+
 if(STM32G0xx_HAL_Driver_ADC)
 	target_sources(STM32G0xx_HAL_Driver PRIVATE
 			${STM32G0XX_HAL_DRIVER_DIRECTORY}/Src/stm32g0xx_hal_adc.c
