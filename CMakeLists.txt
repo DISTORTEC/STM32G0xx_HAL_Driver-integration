@@ -287,6 +287,8 @@ target_link_libraries(STM32G0xx_HAL_Driver PUBLIC
 if(STM32G0xx_HAL_Driver_Full_LL_driver)
 	target_compile_definitions(STM32G0xx_HAL_Driver PRIVATE
 			USE_FULL_LL_DRIVER)
+	target_compile_options(STM32G0xx_HAL_Driver PRIVATE
+			-Wno-unused-parameter)
 endif()
 
 if(STM32G0xx_HAL_Driver_ADC)
